@@ -1,26 +1,20 @@
 pipeline {
     agent any
 
-    options {
-        timestamps()
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo 'Brightz Academy source code checked out'
             }
         }
 
-        stage('Validate Project') {
+        stage('Validate') {
             steps {
                 sh '''
                     test -f Dockerfile
                     test -f docker-compose.yml
                     test -d backend
                     test -d frontend
-                    echo "Project validation successful"
                 '''
             }
         }
@@ -34,10 +28,7 @@ pipeline {
 
     post {
         success {
-            echo 'Brightz Academy pipeline completed successfully'
-        }
-        failure {
-            echo 'Pipeline failed. Check Console Output.'
+            echo 'Brightz Academy pipeline SUCCESS'
         }
     }
 }
