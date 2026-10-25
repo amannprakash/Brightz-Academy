@@ -30,5 +30,8 @@ pipeline {
         success {
             echo 'Brightz Academy pipeline SUCCESS'
         }
+        failure {
+            echo 'Pipeline failed. Check Console Output.'
+        }
     }
 }
